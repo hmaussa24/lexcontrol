@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: lexcontrol_db
+    environment:
+      POSTGRES_USER: lex
+      POSTGRES_PASSWORD: lex
+      POSTGRES_DB: lexcontrol
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U lex -d lexcontrol"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+volumes:
+  db_data:
