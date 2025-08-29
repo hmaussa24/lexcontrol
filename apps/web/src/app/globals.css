@@ -1,21 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Paleta sobria para legaltech */
+  --background: #f8f7f4; /* marfil */
+  --foreground: #1c1f24; /* gris antracita */
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand: #0f2a43; /* azul petróleo */
+  --color-accent: #b48b3a; /* dorado */
+  --color-muted: #4b5563; /* gris 600 */
+  --color-surface: #ffffff; /* tarjetas/encabezado */
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    /* Mantener look claro también en dark para mejor legibilidad */
+    --background: #f6f5f2; /* marfil suave */
+    --foreground: #1c1f24; /* texto oscuro legible */
   }
 }
 
