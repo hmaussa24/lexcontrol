@@ -13,6 +13,8 @@ FROM base AS runner
 ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=builder /app/dist ./dist
+# Prisma schema para migraciones/generate en runtime
+COPY --from=builder /app/prisma ./prisma
 COPY package.json ./
 RUN npm install --omit=dev
 EXPOSE 3000
