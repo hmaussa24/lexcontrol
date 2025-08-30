@@ -2,20 +2,19 @@
 FROM node:20-alpine AS base
 WORKDIR /app
 
-FROM base AS deps
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
-
 FROM base AS builder
+COPY package.json ./
+# Si no hay package-lock.json, usa npm install
+RUN npm install
 COPY . .
-RUN npm ci && npm run build
+RUN npm run build
 
 FROM base AS runner
 ENV NODE_ENV=production
 WORKDIR /app
 COPY --from=builder /app/dist ./dist
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
+COPY package.json ./
+RUN npm install --omit=dev
 EXPOSE 3000
 CMD ["node","dist/main.js"]
 
