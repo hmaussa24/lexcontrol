@@ -42,7 +42,7 @@ export default function CasesPage() {
       setItems(Array.isArray((res as any).data) ? (res as any).data : Array.isArray((res as any)) ? (res as any) : []);
       setTotal(res.total);
       const cl = await apiFetch("/clients");
-      setClients(cl);
+      setClients(Array.isArray((cl as any)?.data) ? (cl as any).data : Array.isArray(cl) ? cl : []);
     } catch (e: any) {
       setError(e.message);
     } finally {
